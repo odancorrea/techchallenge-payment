@@ -1,14 +1,14 @@
 {
-    "family": "lanchonete_api_task",
+    "family": "lanchonete_payment_task",
     "containerDefinitions": [
         {
-            "name": "lanchonete_api",
-            "image": "015024643338.dkr.ecr.sa-east-1.amazonaws.com/lanchonete-api:latest",
+            "name": "lanchonete_payment",
+            "image": "015024643338.dkr.ecr.sa-east-1.amazonaws.com/lanchonete-payment:latest",
             "cpu": 512,
             "memory": 1024,
             "portMappings": [
                 {
-                    "name": "lanchonete_api-80-tcp",
+                    "name": "lanchonete_payment-80-tcp",
                     "containerPort": 80,
                     "hostPort": 80,
                     "protocol": "tcp",
@@ -25,7 +25,7 @@
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-create-group": "true",
-                    "awslogs-group": "/ecs/lanchonete_api_task",
+                    "awslogs-group": "/ecs/lanchonete_payment_task",
                     "awslogs-region": "sa-east-1",
                     "awslogs-stream-prefix": "ecs"
                 },
