@@ -24,7 +24,6 @@ class Server implements iDrivenAdapter{
 
     setRoutes() {
         this.app.get('/ping', application.ping)
-        this.app.post('/payment', paymentController.pay)
         this.app.get('/payment', paymentController.find)
         this.app.get('/payment:id', paymentController.getStatus)
     }
