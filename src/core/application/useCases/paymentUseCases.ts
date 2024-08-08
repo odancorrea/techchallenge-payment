@@ -20,12 +20,14 @@ class PaymentUseCases implements iPaymentUseCases {
     }
 
     async pay(paymentInfo: any): Promise<boolean> {
-        paymentInfo.status = 'paid'
+        paymentInfo.status = 1
         let payment = await this.paymentRepository.create(paymentInfo)
         if (payment) {
-            this.paymentQueue.sendToQueue(JSON.stringify(payment), process.env.APPROVED_PAYMENT || 'pagamento_aprovado')
+            paymentInfo.status = 1
+            this.paymentQueue.sendToQueue(JSON.stringify(paymentInfo), process.env.APPROVED_PAYMENT || 'pagamento_aprovado')
         } else {
-            this.paymentQueue.sendToQueue(JSON.stringify(payment), process.env.DISAPPROVED_PAYMENT || 'pagamento_reprovado')
+            paymentInfo.status = 4
+            this.paymentQueue.sendToQueue(JSON.stringify(paymentInfo), process.env.DISAPPROVED_PAYMENT || 'pagamento_reprovado')
         }
         return true
     }
